@@ -13,7 +13,6 @@ public class DirectionalLight implements Light {
         this.intensity = intensity;
     }
 
-    //chatgpt korrektur
     @Override
     public Color incomingIntensity(Point x, Direction n, Shape s) {
         double cosTheta = Vector.dotProduct(Vector.negate(this.direction), n);

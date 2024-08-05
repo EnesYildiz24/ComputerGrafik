@@ -1,4 +1,3 @@
-/** @author chatGPT mit den Kommentare */
 package cgg;
 
 import cgtools.Color;
@@ -26,7 +25,6 @@ public class PolkaDots {
     // Wenn das Pixel innerhalb eines Punkts liegt, wird die Punktfarbe
     // zurückgegeben
     // Andernfalls wird die Hintergrundfarbe zurückgegeben
-    /** @author chatGPT */
     public Color getColor(double x, double y) {
         // Berechnen der nächstgelegenen Rasterpunkte
         double nearestX = Math.round(x / (abstand + 2 * radius)) * (abstand + 2 * radius);

@@ -1,4 +1,3 @@
-/** @author chatGPT mit den Kommentare */
 
 package cgg;
 
@@ -23,7 +22,6 @@ public class GlasMaterial implements Material {
         return Vector.black; // Keine Emission
     }
     
-    /** @author chatGPT  */
 
     @Override
     public Ray reflection(Ray ray, Hit hit) {
@@ -70,7 +68,6 @@ public class GlasMaterial implements Material {
             }
         }
     }
-    /** @author chatGPT  */
 
     public Direction reflect(Direction incoming, Direction normal) {
         double dot = Vector.dotProduct(incoming, normal);

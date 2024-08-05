@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 
-#author chatgpt 
 # Wir kannten nur Python zur erstellung von Diagrammen.
 # mit java haben wir es versucht aber ohne erfolg
 

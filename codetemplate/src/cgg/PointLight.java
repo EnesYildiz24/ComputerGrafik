@@ -13,8 +13,6 @@ public class PointLight implements Light {
 		this.intensity = intensity;
 	}
 
-	// chatgpt korrektur
-
 	@Override
 	public Color incomingIntensity(Point x, Direction n, Shape s) {
 		Direction lightDir = Vector.subtract(position, x);

@@ -24,7 +24,6 @@ public class Ebene implements Shape {
         this.material = material;
 
     }
-    //chatgpt hilfe
     @Override
     public Hit intersect(Ray ray) {
         double dotProduct = Vector.dotProduct(normal, ray.getDirection());

@@ -6,7 +6,6 @@ import java.util.Random;
 public class RandomUtils {
 
     private static final Random rand = new Random();
-//chatgpt
     // Gibt eine zufällig gleichmäßig verteilte Richtung auf der Einheitssphäre zurück
     public static Direction unitSphere() {
         double theta = 2 * Math.PI * rand.nextDouble(); // Winkel um die z-Achse

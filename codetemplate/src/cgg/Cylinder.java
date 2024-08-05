@@ -1,4 +1,3 @@
-/** @author chatGPT mit den Kommentare */
 package cgg;
 
 import cgtools.*;
@@ -45,7 +44,6 @@ public class Cylinder implements Shape {
         double minT = Double.POSITIVE_INFINITY;
         Hit finalHit = null;
 
-        // @Chatgpt korrektur
         // Überprüfung der Gültigkeit beider potentieller Schnittpunkte
         double[] ts = { t1, t2 };
         for (double t : ts) {
@@ -68,7 +66,6 @@ public class Cylinder implements Shape {
             }
         }
 
-        // @Chatgpt korrektur
         // Prüfen auf Schnittpunkte mit der Decke und dem Boden des Zylinders
         if (ray.getDirection().y() != 0) { // Vermeiden der Division durch Null
             double[] heights = { 0, height }; // Höhen des Bodens und der Decke des Zylinders

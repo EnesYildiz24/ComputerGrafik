@@ -1,4 +1,3 @@
-/** @author chatGPT mit den Kommentare */
 
 package cgg.a03;
 

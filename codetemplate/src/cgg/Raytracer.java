@@ -1,4 +1,3 @@
-/** @author chatGPT mit den Kommentare */
 
 package cgg;
 
@@ -50,7 +49,6 @@ public class Raytracer implements Sampler {
 
         return Vector.add(emitted, Vector.add(Vector.multiply(albedo, reflectedColor), directLight));
     }
-    //chatgpt korrektur
     // Berechnet direktes Licht von allen Lichtquellen
     private Color addDirectLight(Hit hit, World world) {
         Color directLight = Vector.black;

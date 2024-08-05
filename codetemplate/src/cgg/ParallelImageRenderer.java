@@ -1,4 +1,3 @@
-/** @author chatGPT mit den Kommentare */
 
 package cgg;
 
@@ -27,7 +26,6 @@ public class ParallelImageRenderer {
         this.sampleRate = sampleRate;
     }
 
-    // teilweise chatgpt
     public Image render() {
         ExecutorService executor = Executors.newFixedThreadPool(nThreads);// Executor-Service zur Thread-Verwaltung.
         List<Future<Image>> futures = new ArrayList<>();// Future-Liste für die asynchronen Render-Aufgaben.
@@ -45,7 +43,6 @@ public class ParallelImageRenderer {
 
         Image finalImage = new Image(width, height);
 
-        /** @author chatGPT */
         try {
             // Mergen der gerenderten Segmente in das finale Bild.
             for (int i = 0; i < futures.size(); i++) {

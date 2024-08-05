@@ -47,7 +47,6 @@ public class Main {
         System.out.println("Wrote image: " + filename);
     }
 
-    // @Author Chatgpt
     private static Group createParkScene(Material dRed, Material dBlue, Material dYellow, Material dWhite,
             Material dGray, Material dBlack, Material dPink, Material darkGreen) {
         Shape[] objects = new Shape[69]; // Definieren des Arrays mit der festen Länge von 50

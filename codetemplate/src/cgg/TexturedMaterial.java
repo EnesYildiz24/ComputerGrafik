@@ -24,7 +24,6 @@ public class TexturedMaterial implements Material {
         }
         return Vector.black; // Keine Emission, wenn das Material nicht leuchten soll
     }
-    //chatgpt hilfe
     @Override
     public Ray reflection(Ray incomingRay, Hit hit) {
         Direction scatterDirection = RandomUtils.unitSphere();

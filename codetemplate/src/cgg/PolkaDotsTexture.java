@@ -15,7 +15,6 @@ public class PolkaDotsTexture implements Sampler {
         this.background = background;
         this.repetitions = repetitions;
     }
-    //chatgpt hilfe
     @Override
     public Color getColor(double u, double v) {
         // Anpassung von u und v für die Wiederholung, ohne den Bereich zu verlassen

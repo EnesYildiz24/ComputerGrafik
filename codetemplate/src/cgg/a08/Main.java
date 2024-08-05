@@ -83,7 +83,6 @@ public class Main {
         return new Group(objects.toArray(new Shape[0]));
     }
 
-    //author chatgpt
     private static void benchmark(int width, int height, Raytracer rt, int sampleRate, int maxThreads) {
         try (FileWriter writer = new FileWriter("benchmark_results.txt")) {
             System.out.println("Starting benchmark...");

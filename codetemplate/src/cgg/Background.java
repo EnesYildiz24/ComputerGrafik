@@ -10,7 +10,6 @@ public class Background implements Shape {
     public Background(Material material) {
         this.material = material;
     }
-    //chatgpt hilfe
     @Override
     public Hit intersect(Ray ray) {
         // Der Hintergrund ist immer getroffen, aber unendlich weit weg
