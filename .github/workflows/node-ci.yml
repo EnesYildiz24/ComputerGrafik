@@ -1,0 +1,99 @@
+# GitHub Actions CI/CD Pipeline for Node.js
+# Note: "Context access might be invalid" warnings are normal for secrets
+# as they are only available at runtime, not during static analysis
+
+name: Node CI + Security
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-scan:
+    if: ${{ hashFiles('**/package.json') != '' }}
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: imba_app
+          POSTGRES_PASSWORD: imba_pass
+          POSTGRES_DB: imba_autopilot
+        options: >-
+          --health-cmd="pg_isready -U imba_app -d imba_autopilot"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=5
+    env:
+      PGHOST: localhost
+      PGPORT: 5432
+      PGUSER: imba_app
+      PGPASSWORD: imba_pass
+      PG_PASSWORD: imba_pass
+      PGDATABASE: imba_autopilot
+      PGSSL: "false"
+      RUN_PG_TESTS: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Install autopilot deps
+        run: npm ci
+
+      - name: Migrate database
+        run: npm run migrate
+
+      - name: Run autopilot tests
+        run: npm test
+        env:
+          SAFE_BROWSING_API_KEY: ${{ secrets.SAFE_BROWSING_API_KEY }}
+
+      - name: Install sample app deps
+        run: npm ci || npm install
+        working-directory: observability-starter/sample-app
+
+      - name: Test sample app
+        run: npm test
+        working-directory: observability-starter/sample-app
+
+      - name: npm audit (production)
+        run: npm audit --production --audit-level=high || true
+        working-directory: observability-starter/sample-app
+
+      - name: Build image
+        run: docker build -t sample-app:ci .
+        working-directory: observability-starter/sample-app
+
+      - name: Trivy FS scan (non-blocking)
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          scan-type: fs
+          ignore-unfixed: true
+          format: table
+          severity: CRITICAL,HIGH
+          exit-code: 0
+          scan-ref: observability-starter/sample-app
+
+      - name: Trivy image scan (non-blocking)
+        uses: aquasecurity/trivy-action@0.24.0
+        with:
+          image-ref: sample-app:ci
+          format: table
+          ignore-unfixed: true
+          severity: CRITICAL,HIGH
+          exit-code: 0
