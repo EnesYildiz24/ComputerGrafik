@@ -12,6 +12,7 @@ on:
 
 jobs:
   build-and-scan:
+    if: ${{ hashFiles('**/package.json') != '' }}
     runs-on: ubuntu-latest
     services:
       postgres:
